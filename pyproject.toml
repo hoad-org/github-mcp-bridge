@@ -1,0 +1,44 @@
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "github-mcp-bridge"
+version = "1.0.0"
+description = "MCP bridge to cloud GitHub connector via local gh CLI"
+authors = ["Craig Hoad <craig@craighoad.com>"]
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/rhyscraig/github-mcp-bridge"
+packages = [{include = "github_mcp", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+mcp = "^1.0.0"
+pydantic = "^2.5.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.4.0"
+pytest-cov = "^6.0.0"
+pytest-mock = "^3.12.0"
+ruff = "^0.15.0"
+black = "^26.3.1"
+mypy = "^1.8.0"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+addopts = "-v --strict-markers"
+
+[tool.coverage.run]
+source = ["src"]
+branch = true
+fail_under = 85
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
